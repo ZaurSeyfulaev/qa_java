@@ -1,44 +1,20 @@
 package com.example;
 
-import org.junit.Before;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
-
 import static org.junit.Assert.*;
 
-@RunWith(Parameterized.class)
+@RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
-    private int kittensCount;
-    private int expected;
-
-    @Before
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Spy
     private Feline feline = new Feline();
-
-    public FelineTest(int kittensCount, int expected) {
-        this.kittensCount = kittensCount;
-        this.expected = expected;
-    }
-
-    @Parameterized.Parameters
-    public static Object[] getKittensCount() {
-        return new Object[][]{
-                {1, 1},
-                {9, 9},
-                {100, 100}
-        };
-
-    }
 
     @Test
     public void eatMeatTest() throws Exception {
@@ -53,12 +29,6 @@ public class FelineTest {
     public void getFamilyTest() {
         Feline feline = new Feline();
         assertEquals("Кошачьи", feline.getFamily());
-    }
-
-    @Test
-    public void getKittensMethodWithSignatureTest() {
-        Feline feline = new Feline();
-        assertEquals(expected, feline.getKittens(kittensCount));
     }
 
     @Test
